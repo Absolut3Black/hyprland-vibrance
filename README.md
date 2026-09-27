@@ -16,7 +16,7 @@ On Linux running **Wayland / Hyprland**, no native Intel/NVIDIA saturation contr
 - 🔋 **Zero Battery Penalty:** Simple 10-line math per pixel; no background daemons or polling processes.
 - 🎨 **Smart Saturation + Vibrance:** Boosts dull/muted colors while protecting skin tones and already-vibrant elements from clipping.
 - ⌨️ **Instant Hotkey Toggle:** Turn it on or off anytime with <kbd>Super</kbd> + <kbd>Alt</kbd> + <kbd>V</kbd>.
-- 🔔 **Desktop Notifications:** Visual feedback when toggling.
+- 🔔 **Desktop Notifications:** Visual feedback with custom multi-color gradient vibrance status icons.
 - 🐧 **Universal Compatibility:** Works seamlessly with **Omarchy Linux** (Lua-based Hyprland config) and standard Hyprland (`hyprland.conf`).
 
 ---
@@ -36,9 +36,10 @@ cd hyprland-vibrance
 The installer will:
 1. Copy the GLSL shader to `~/.config/hypr/shaders/saturation.glsl`.
 2. Install the `toggle-saturation` CLI helper to `~/.local/bin/`.
-3. Automatically configure your Hyprland configuration (`looknfeel.lua` or `hyprland.conf`).
-4. Register the <kbd>Super</kbd> + <kbd>Alt</kbd> + <kbd>V</kbd> keybinding.
-5. Immediately activate the shader so you can see the difference!
+3. Install high-res multi-color gradient notification icons to `~/.config/hypr/icons/`.
+4. Automatically configure your Hyprland configuration (`looknfeel.lua` or `hyprland.conf`).
+5. Register the <kbd>Super</kbd> + <kbd>Alt</kbd> + <kbd>V</kbd> keybinding.
+6. Immediately activate the shader so you can see the difference!
 
 ---
 

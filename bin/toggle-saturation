@@ -5,6 +5,26 @@
 # ==============================================================================
 
 SHADER="${HYPR_SHADER_PATH:-$HOME/.config/hypr/shaders/saturation.glsl}"
+ICON_ON="${HYPR_ICON_ON:-$HOME/.config/hypr/icons/saturation-on.png}"
+ICON_OFF="${HYPR_ICON_OFF:-$HOME/.config/hypr/icons/saturation-off.png}"
+
+notify() {
+  local icon="$1"
+  local fallback="$2"
+  local headline="$3"
+  local body="$4"
+
+  local target_icon="$icon"
+  if [[ ! -f "$target_icon" ]]; then
+    target_icon="$fallback"
+  fi
+
+  if command -v omarchy-notification-send >/dev/null 2>&1; then
+    omarchy-notification-send --app-name "Display" -i "$target_icon" "$headline" "$body"
+  elif command -v notify-send >/dev/null 2>&1; then
+    notify-send -a "Display" -i "$target_icon" "$headline" "$body"
+  fi
+}
 
 get_current_shader() {
   local output
@@ -29,27 +49,19 @@ apply_shader() {
 
 enable_shader() {
   if [[ ! -f "$SHADER" ]]; then
-    if command -v notify-send >/dev/null 2>&1; then
-      notify-send -a "Display" -u critical "Saturation Error" "Shader not found: $SHADER"
-    fi
+    notify "dialog-error" "dialog-error" "Saturation Error" "Shader not found: $SHADER"
     echo "Error: Shader not found at $SHADER" >&2
     exit 1
   fi
 
   apply_shader "$SHADER"
-
-  if command -v notify-send >/dev/null 2>&1; then
-    notify-send -a "Display" -i video-display "Color Vibrance" "Boost Enabled (+30% Saturation & Vibrance)"
-  fi
+  notify "$ICON_ON" "video-display" "Color Vibrance" "Boost Enabled (+30% Saturation & Vibrance)"
   echo "Saturation shader enabled: $SHADER"
 }
 
 disable_shader() {
   apply_shader ""
-
-  if command -v notify-send >/dev/null 2>&1; then
-    notify-send -a "Display" -i video-display "Color Vibrance" "Boost Disabled (Neutral)"
-  fi
+  notify "$ICON_OFF" "video-display" "Color Vibrance" "Boost Disabled (Neutral)"
   echo "Saturation shader disabled."
 }
 

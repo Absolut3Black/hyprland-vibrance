@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <defs>
+    <!-- Ultra-vibrant multicolor spectrum gradient -->
+    <linearGradient id="spectrumGrad" x1="5%" y1="5%" x2="95%" y2="95%">
+      <stop offset="0%" stop-color="#FF0844" />
+      <stop offset="18%" stop-color="#FFB199" />
+      <stop offset="35%" stop-color="#FEE140" />
+      <stop offset="52%" stop-color="#00E676" />
+      <stop offset="70%" stop-color="#00B0FF" />
+      <stop offset="86%" stop-color="#7C4DFF" />
+      <stop offset="100%" stop-color="#F50057" />
+    </linearGradient>
+
+    <!-- Glass lighting highlight -->
+    <linearGradient id="highlight" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.4" />
+      <stop offset="40%" stop-color="#FFFFFF" stop-opacity="0.05" />
+      <stop offset="100%" stop-color="#000000" stop-opacity="0.12" />
+    </linearGradient>
+
+    <!-- Crisp rim -->
+    <linearGradient id="rimGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.8" />
+      <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0.15" />
+    </linearGradient>
+
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="5" stdDeviation="5" flood-color="#000000" flood-opacity="0.28" />
+    </filter>
+    <filter id="glyphShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#000000" flood-opacity="0.35" />
+    </filter>
+  </defs>
+
+  <!-- Base rounded squircle with gradient -->
+  <rect x="12" y="12" width="104" height="104" rx="30" fill="url(#spectrumGrad)" filter="url(#shadow)" />
+
+  <!-- Lighting overlay -->
+  <rect x="12" y="12" width="104" height="104" rx="30" fill="url(#highlight)" />
+
+  <!-- Crisp border rim -->
+  <rect x="13" y="13" width="102" height="102" rx="29" fill="none" stroke="url(#rimGrad)" stroke-width="2" />
+
+  <!-- Vibrant color adjustment / sparkles emblem with soft shadow, no dark circle -->
+  <g transform="translate(64, 64)" filter="url(#glyphShadow)">
+    <!-- Primary star / vibrance sparkle -->
+    <path d="M 0 -22 C 1.5 -8 8 -1.5 22 0 C 8 1.5 1.5 8 0 22 C -1.5 8 -8 1.5 -22 0 C -8 -1.5 -1.5 -8 0 -22 Z" fill="#FFFFFF" fill-opacity="0.95" />
+    <!-- Secondary sparkle -->
+    <path d="M 16 -16 C 16.8 -11 20 -8 25 -7 C 20 -6 16.8 -3 16 2 C 15.2 -3 12 -6 7 -7 C 12 -8 15.2 -11 16 -16 Z" fill="#FFFFFF" fill-opacity="0.85" />
+    <!-- Tertiary tiny sparkle -->
+    <circle cx="-14" cy="14" r="2.5" fill="#FFFFFF" fill-opacity="0.8" />
+  </g>
+</svg>

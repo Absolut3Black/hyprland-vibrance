@@ -9,11 +9,12 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 HYPR_CONFIG_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/hypr"
 BIN_DIR="${HOME}/.local/bin"
 SHADER_DIR="${HYPR_CONFIG_DIR}/shaders"
+ICON_DIR="${HYPR_CONFIG_DIR}/icons"
 
 echo "=== Installing hyprland-vibrance ==="
 
 # 1. Ensure target directories exist
-mkdir -p "$SHADER_DIR" "$BIN_DIR"
+mkdir -p "$SHADER_DIR" "$BIN_DIR" "$ICON_DIR"
 
 # 2. Copy shader
 echo "-> Installing shader to ${SHADER_DIR}/saturation.glsl"
@@ -27,12 +28,18 @@ chmod +x "${BIN_DIR}/toggle-saturation"
 # Also symlink for omarchy-toggle-saturation compatibility
 ln -sf "${BIN_DIR}/toggle-saturation" "${BIN_DIR}/omarchy-toggle-saturation"
 
-# 4. Check PATH
+# 4. Copy notification icons
+if [[ -d "${SCRIPT_DIR}/icons" ]]; then
+  echo "-> Installing notification icons to ${ICON_DIR}"
+  cp -rf "${SCRIPT_DIR}/icons/"* "${ICON_DIR}/"
+fi
+
+# 5. Check PATH
 if [[ ":$PATH:" != *":$BIN_DIR:"* ]]; then
   echo "[!] Notice: $BIN_DIR is not in your current PATH. Add it to your ~/.bashrc or ~/.zshrc."
 fi
 
-# 5. Configure Hyprland
+# 6. Configure Hyprland
 if [[ -f "${HYPR_CONFIG_DIR}/hyprland.lua" ]]; then
   # Omarchy / Lua configuration
   echo "-> Detected Lua-based Hyprland config (Omarchy)"

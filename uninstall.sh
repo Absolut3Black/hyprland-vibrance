@@ -9,6 +9,8 @@ HYPR_CONFIG_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/hypr"
 BIN_DIR="${HOME}/.local/bin"
 SHADER_DIR="${HYPR_CONFIG_DIR}/shaders"
 
+ICON_DIR="${HYPR_CONFIG_DIR}/icons"
+
 echo "=== Uninstalling hyprland-vibrance ==="
 
 # 1. Disable active shader
@@ -20,8 +22,10 @@ fi
 rm -f "${SHADER_DIR}/saturation.glsl"
 rm -f "${BIN_DIR}/toggle-saturation"
 rm -f "${BIN_DIR}/omarchy-toggle-saturation"
+rm -f "${ICON_DIR}/saturation-on.png" "${ICON_DIR}/saturation-on.svg"
+rm -f "${ICON_DIR}/saturation-off.png" "${ICON_DIR}/saturation-off.svg"
 
-echo "-> Removed shader and CLI tools."
+echo "-> Removed shader, icons, and CLI tools."
 
 # 3. Clean up config files if possible
 LOOKNFEEL="${HYPR_CONFIG_DIR}/looknfeel.lua"
